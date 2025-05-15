@@ -24,7 +24,7 @@ jobs:
       - name: Build package
         run: |
           mkdir package
-          cp main.py package/
+          cp lambda_function.py package/
           pip install -r requirements.txt -t package/
           cd package
           zip -r ../function.zip .
