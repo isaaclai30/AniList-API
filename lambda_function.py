@@ -24,9 +24,7 @@ def call_anilist_api():
     query Query($userId: Int, $status: MediaListStatus, $type: MediaType, $sort: [MediaListSort], $perPage: Int, $page: Int) {
       Page(perPage: $perPage, page: $page) {
         pageInfo {
-          currentPage
           hasNextPage
-          perPage
         }
         mediaList(userId: $userId, status: $status, type: $type, sort: $sort) {
           media {
@@ -36,7 +34,6 @@ def call_anilist_api():
             title {
               romaji
             }
-            status
             nextAiringEpisode {
               timeUntilAiring
             }
