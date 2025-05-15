@@ -1,0 +1,33 @@
+---
+name: Push to AWS Lambda
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+    
+      - name: Configure AWS credentials from Production account
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::091295763981:role/service-role/my-anilist-api-role-f5og4xoq
+          aws-region: us-east-1
+ 
+      - name: Build package
+        run: |
+          mkdir package
+          cp main.py package/
+          pip install -r requirements.txt -t package/
+          cd package
+          zip -r ../function.zip .
+
+      - name: Update AWS Lambda function
+        run: aws lambda update-function-code --function-name my-anilist-api --zip-file fileb://function.zip
