@@ -18,7 +18,7 @@ jobs:
       - name: Configure AWS credentials from Production account
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::091295763981:role/service-role/my-anilist-api-role-f5og4xoq
+          role-to-assume: arn:aws:iam::091295763981:role/anilist-github-access
           aws-region: us-east-1
  
       - name: Build package
