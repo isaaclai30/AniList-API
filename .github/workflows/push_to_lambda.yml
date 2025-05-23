@@ -23,7 +23,7 @@ jobs:
           aws-region: us-east-1
  
       - name: Build package
-        run:
+        run: |
           mkdir package
           cp lambda_function.py package/
           pip install -r requirements.txt -t package/
