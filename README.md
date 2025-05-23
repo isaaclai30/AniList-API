@@ -16,12 +16,8 @@ In order for a discord webhook to be sent out a url would have to be create. By 
 ### Lambda Function
 To setup this script to run on a regular interval, a lambda function was set up.  The lambda function required a few edits to the script, the script was encapsulated into a function call, lambda_handler with the parameter of event and context, and the main.py was renamed into lambda_function.py. The environment variable were place into the lambda, defining variable that are specific to the people running it, the webhook and the userID. Lambda does not include the request library, which is used for the api and webhook so that package was sent using github actions discussed later, other method will be just later as well. All that remain was to set up the script to run at a regular interval automatically, which required a event bridge used a cron rule that defined when to run.
 
-### GitHub Actions
+### Github Actions
 This last portion was not a requirement in order to run this script, but allow the syncing of GitHub repository updates to the lambda. OIDC was used here to link the repository and the GitHub together specifically.
 After that the requirement.txt is pulled to grab the only requirement, requests, and it and the lambda_function.py is zipped and sent to the lambda defined in the OIDC
-
-#### Secret
-The lambda role is an environment secret. This does not increase security much at all since role is connected to this repository. But it does put the variable aside, so if the github is cloned to be used by someone else, editing the code is not required.
-
 ### Lambda Role Assignment
 In order to link the GitHub and Lambda directly, a Identity provider and an audience of AWS is set setup to. Then a role is create for GitHub to access as a web Identity. The trust policy is then edited to connect the repository with AWS with the repository as the sub and AWS as the aud.
