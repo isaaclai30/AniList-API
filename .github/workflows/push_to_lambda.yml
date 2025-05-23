@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    enviroment: push_to_lambda
+    environment: push_to_lambda
     permissions:
       id-token: write
       contents: read
