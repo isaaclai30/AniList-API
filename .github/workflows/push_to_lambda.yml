@@ -18,7 +18,7 @@ jobs:
       - name: Configure AWS credentials from Production account
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: secrets.LAMDBA_ROLE
+          role-to-assume: ${{ secrets.LAMBDA_ROLE }}
           aws-region: us-east-1
  
       - name: Build package
