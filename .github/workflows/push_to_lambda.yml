@@ -17,13 +17,13 @@ jobs:
       - uses: actions/checkout@v4
     
       - name: Configure AWS credentials from Production account
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.LAMBDA_ROLE }}
           aws-region: us-east-1
  
       - name: Build package
-        run: |
+        run:
           mkdir package
           cp lambda_function.py package/
           pip install -r requirements.txt -t package/
