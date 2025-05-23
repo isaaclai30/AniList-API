@@ -29,7 +29,7 @@ def call_anilist_api():
         mediaList(userId: $userId, status: $status, type: $type, sort: $sort) {
           media {
           coverImage {
-            extraLarge
+            large
           }
             title {
               romaji
@@ -87,5 +87,5 @@ def send_webhook(series):
   
   body = series["title"]["romaji"] + " will be releasing in " + str(int(time_until_airing/60)) + " mintues and " + str(time_until_airing%60) + " seconds approximately." 
   requests.post(discord_webhook, json={"content": body})
-  requests.post(discord_webhook, json={"content": series["coverImage"]["extraLarge"]})
+  requests.post(discord_webhook, json={"content": series["coverImage"]["large"]})
   #call to webhook to send out series going to release soon
